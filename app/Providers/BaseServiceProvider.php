@@ -6,20 +6,26 @@ use App\Interface\TicketInterface;
 use App\Service\TicketService;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+
+class BaseServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
+     *
+     * @return void
      */
-    public function register(): void
+    public function register()
     {
         $this->app->bind(TicketInterface::class, TicketService::class);
     }
 
+
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
+     *
+     * @return void
      */
-    public function boot(): void
+    public function boot()
     {
         //
     }
