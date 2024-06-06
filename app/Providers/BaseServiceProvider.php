@@ -17,6 +17,7 @@ class BaseServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(TicketInterface::class, TicketService::class);
+        $this->app->bind(TicketInterface::class, TicketService::class);
     }
 
 

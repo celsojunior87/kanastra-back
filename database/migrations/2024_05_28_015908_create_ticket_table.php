@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ticket', function (Blueprint $table) {
-            $table->id('debtID');
+            $table->id();
             $table->string('name');
             $table->integer('governmentId');
             $table->string('email');
             $table->string('debtAmount');
             $table->timestamp('debtDueDate');
+            $table->uuid('debtId');
         });
     }
 

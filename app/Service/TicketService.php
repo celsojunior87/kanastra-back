@@ -5,11 +5,19 @@ namespace App\Service;
 use App\Http\Requests\TicketRequest;
 use App\Interface\TicketInterface;
 use App\Models\Ticket;
+use App\Repository\TicketRepository;
 use App\Trait\Response;
 
 class TicketService implements TicketInterface
 {
     use Response;
+
+    protected $ticketRepository;
+
+    public function __construct(TicketRepository $ticketRepository)
+    {
+        $this->ticketRepository = $ticketRepository;
+    }
 
     public function getAll()
     {
@@ -23,8 +31,12 @@ class TicketService implements TicketInterface
 
     public function upload(TicketRequest $request)
     {
-        dd($request->all());
-
+        try {
+            $this->ticketRepository->processCsv($request->file('file'));
+            return response()->json(['message' => 'File uploaded successfully'], 200);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 
 

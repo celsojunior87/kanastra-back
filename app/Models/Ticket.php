@@ -12,4 +12,13 @@ class Ticket extends Model
     protected $table = 'ticket';
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+        'governmentId',
+        'email',
+        'debtAmount',
+        'debtDueDate',
+        'debtId',
+    ];
+
 }
